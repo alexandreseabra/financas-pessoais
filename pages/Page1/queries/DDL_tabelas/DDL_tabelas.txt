@@ -1,0 +1,64 @@
+-- Tabela Categoria
+CREATE TABLE categoria (
+  id SERIAL PRIMARY KEY,
+  tipo VARCHAR(10) CHECK (tipo IN ('despesa', 'receita')),
+  nome VARCHAR(100) NOT NULL,
+  icone VARCHAR(50),
+  cor VARCHAR(20),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela Conta
+CREATE TABLE conta (
+  id SERIAL PRIMARY KEY,
+  tipo VARCHAR(50),  -- Pode ser 'corrente', 'poupança', etc.
+  descricao TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela Cartao (associado a uma conta)
+CREATE TABLE cartao (
+  id SERIAL PRIMARY KEY,
+  conta_id INT REFERENCES conta(id),
+  limite NUMERIC(10,2),
+  dia_fechamento INT,
+  dia_vencimento INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela Tag
+CREATE TABLE tag (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(50) UNIQUE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela Transacao
+CREATE TABLE transacao (
+  id SERIAL PRIMARY KEY,
+  data_transacao DATE NOT NULL,
+  descricao TEXT,
+  categoria_id INT REFERENCES categoria(id),
+  conta_id INT,       -- Pode ser nulo se a transação for via cartão
+  cartao_id INT,      -- Pode ser nulo se a transação for via conta
+  valor NUMERIC(10,2) NOT NULL,
+  ignorar BOOLEAN DEFAULT FALSE,
+  observacao TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_conta_cartao CHECK (
+    (conta_id IS NOT NULL AND cartao_id IS NULL) OR 
+    (conta_id IS NULL AND cartao_id IS NOT NULL)
+  )
+);
+
+-- Tabela Associativa Transacao_Tag (para relação muitos-para-muitos)
+CREATE TABLE transacao_tag (
+  transacao_id INT REFERENCES transacao(id),
+  tag_id INT REFERENCES tag(id),
+  PRIMARY KEY (transacao_id, tag_id)
+);
