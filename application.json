@@ -1,5 +1,8 @@
 {
   "appIsExample": false,
+  "appLayout": {
+    "type": "TABLET"
+  },
   "applicationVersion": 2,
   "collapseInvisibleWidgets": true,
   "color": "#ECECEC",
@@ -8,6 +11,13 @@
     {
       "id": "Page1",
       "isDefault": true
+    },
+    {
+      "id": "DDL e DML",
+      "isDefault": false
     }
-  ]
+  ],
+  "unpublishedAppLayout": {
+    "type": "TABLET"
+  }
 }

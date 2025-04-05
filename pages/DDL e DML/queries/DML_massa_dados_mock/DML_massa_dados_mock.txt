@@ -1,0 +1,46 @@
+-- Inserindo dados iniciais nas Categorias
+INSERT INTO categoria (tipo, nome, icone, cor, created_at, updated_at)
+VALUES 
+  ('despesa', 'Alimentação', 'fa-utensils', 'verde', NOW(), NOW()),
+  ('despesa', 'Transporte', 'fa-bus', 'azul', NOW(), NOW()),
+  ('receita', 'Salário', 'fa-dollar-sign', 'cinza', NOW(), NOW()),
+  ('despesa', 'Lazer', 'fa-film', 'amarelo', NOW(), NOW());
+
+-- Inserindo dados iniciais nas Contas
+INSERT INTO conta (tipo, descricao, created_at, updated_at)
+VALUES 
+  ('corrente', 'Conta corrente Banco X', NOW(), NOW()),
+  ('poupanca', 'Conta poupança Banco Y', NOW(), NOW());
+
+-- Inserindo dados iniciais nos Cartões
+INSERT INTO cartao (conta_id, limite, dia_fechamento, dia_vencimento, created_at, updated_at)
+VALUES 
+  (1, 5000.00, 20, 5, NOW(), NOW()),
+  (1, 3000.00, 10, 25, NOW(), NOW());
+
+-- Inserindo dados iniciais nas Tags
+INSERT INTO tag (nome, created_at, updated_at)
+VALUES 
+  ('Urgente', NOW(), NOW()),
+  ('Trabalho', NOW(), NOW()),
+  ('Casa', NOW(), NOW()),
+  ('Diversão', NOW(), NOW());
+
+-- Inserindo dados iniciais nas Transações
+-- Obs.: Na transação, utilizamos "conta_id" ou "cartao_id", garantindo que somente um deles seja informado.
+INSERT INTO transacao (data_transacao, descricao, categoria_id, conta_id, cartao_id, valor, ignorar, observacao, created_at, updated_at)
+VALUES 
+  ('2025-04-01', 'Compra no supermercado', 1, 1, NULL, 150.00, FALSE, 'Compra de itens básicos', NOW(), NOW()),
+  ('2025-04-05', 'Recebimento de salário', 3, 2, NULL, 3000.00, FALSE, 'Salário do mês', NOW(), NOW()),
+  ('2025-04-10', 'Cinema com amigos', 4, NULL, 1, 40.00, FALSE, 'Sessão de cinema', NOW(), NOW()),
+  ('2025-04-12', 'Manutenção de veículo', 2, 1, NULL, 70.00, TRUE, 'Transação de teste ignorada', NOW(), NOW());
+
+-- Inserindo dados na tabela associativa entre Transações e Tags
+INSERT INTO transacao_tag (transacao_id, tag_id)
+VALUES 
+  (1, 3),  -- Transação 1 associada à tag "Casa"
+  (1, 1),  -- Transação 1 associada à tag "Urgente"
+  (2, 2),  -- Transação 2 associada à tag "Trabalho"
+  (3, 4),  -- Transação 3 associada à tag "Diversão"
+  (3, 1),  -- Transação 3 associada à tag "Urgente"
+  (4, 1);  -- Transação 4 associada à tag "Urgente"

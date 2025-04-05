@@ -1,6 +1,6 @@
 {
   "gitSyncId": "67ef2d06dbf6d0457d74b2f8_0dd8e653-f919-42bf-9cb2-ceb95054b7c3",
-  "id": "Page1_DDL_tabelas",
+  "id": "DDL e DML_DDL_tabelas",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
@@ -25,7 +25,7 @@
     "dynamicBindingPathList": [],
     "executeOnLoad": false,
     "name": "DDL_tabelas",
-    "pageId": "Page1",
+    "pageId": "DDL e DML",
     "userSetOnLoad": false
   }
 }

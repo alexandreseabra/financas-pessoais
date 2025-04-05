@@ -1,0 +1,15 @@
+SELECT
+t.*,
+  c.nome AS categoria_nome
+FROM
+  public.transacao t
+LEFT JOIN
+  public.categoria c ON t.categoria_id = c.id
+WHERE
+  "descricao" ilike '%{{Transacoes.searchText}}%'
+ORDER BY
+  "{{Transacoes.sortOrder.column || 'id'}}" {{Transacoes.sortOrder.order !== "desc" ? "" : "DESC"}}
+LIMIT
+  {{Transacoes.pageSize}}
+OFFSET
+  {{Transacoes.pageOffset}}

@@ -1,23 +1,23 @@
 {
-  "gitSyncId": "67ef2d06dbf6d0457d74b2f8_a8b87669-762b-472c-9e61-3c29b6ce5275",
+  "gitSyncId": "67ef2d06dbf6d0457d74b2f8_bbb2355b-8fe9-49d2-b6d8-22a84e6901d8",
   "unpublishedPage": {
+    "isHidden": false,
     "layouts": [
       {
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 380,
+          "bottomRow": 750,
           "canExtend": true,
           "containerStyle": "none",
           "detachFromLayout": true,
           "dynamicBindingPathList": [],
-          "dynamicTriggerPathList": [],
           "leftColumn": 0,
-          "minHeight": 1292,
+          "minHeight": 760,
           "parentColumnSpace": 1,
           "parentRowSpace": 1,
-          "rightColumn": 4896,
+          "rightColumn": 1224,
           "snapColumns": 64,
-          "snapRows": 124,
+          "snapRows": 74,
           "topRow": 0,
           "type": "CANVAS_WIDGET",
           "version": 92,
@@ -26,7 +26,7 @@
         }
       }
     ],
-    "name": "Page1",
-    "slug": "page1"
+    "name": "DDL e DML",
+    "slug": "ddl-e-dml"
   }
 }
